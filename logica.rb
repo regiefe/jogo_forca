@@ -37,29 +37,9 @@ def joga(nome)
       end
     end
   end
- avisa_pontos pontos_ate_agora 
- pontos_ate_agora
+  avisa_pontos pontos_ate_agora 
+  pontos_ate_agora
 end
-
-def jogo_da_forca
-  nome = da_boas_vindas
-  pontos_totais = 0
-  
-  avisa_campeao_atual le_rank
-
-  loop do
-    pontos_totais += joga nome
-    avisa_pontos_totais pontos_totais
-
-    if le_rank[1].to_i < pontos_totais
-      salva_rank nome, pontos_totais
-    end
-
-    break if nao_quer_jogar?
-  end
-end
-
-
 
 def pede_um_chute_valido(chutes, erros, mascara)
   cabecalho_de_tentativas chutes, erros, mascara
@@ -87,13 +67,26 @@ end
 
 def sorteira_palavra_secreta(nome)
   avisa_escolhendo_palavra
-  if nome == 'Heitor'
-    texto = "testando"
-  else
-    texto =  File.read("dicionario.txt")
-    todas_as_palavra = texto.split("\n")
-    numero_aleatorio = rand(todas_as_palavra.size)
-    palavra_secreta = todas_as_palavra[numero_aleatorio].downcase
-    avisa_palavra_escolhida palavra_secreta
+  texto =  File.read("dicionario.txt")
+  todas_as_palavra = texto.split("\n")
+  numero_aleatorio = rand(todas_as_palavra.size)
+  palavra_secreta = todas_as_palavra[numero_aleatorio].downcase
+  avisa_palavra_escolhida palavra_secreta
+end
+
+def jogo_da_forca
+  nome = da_boas_vindas
+  pontos_totais = 0
+
+  avisa_campeao_atual le_rank
+
+  loop do
+    pontos_totais += joga nome
+    avisa_pontos_totais pontos_totais
+
+    if le_rank[1].to_i < pontos_totais
+      salva_rank nome, pontos_totais
+    end
+    break if nao_quer_jogar?
   end
 end
